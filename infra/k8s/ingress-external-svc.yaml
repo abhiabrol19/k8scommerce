@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ingress-external
+  namespace: default
+spec:
+  type: ExternalName
+  externalName: ingress-nginx-controller.ingress-nginx.svc.cluster.local
+  ports:
+    - port: 80

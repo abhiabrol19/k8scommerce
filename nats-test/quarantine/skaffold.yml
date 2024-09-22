@@ -1,0 +1,148 @@
+apiVersion: skaffold/v4beta3
+kind: Config
+manifests:
+  rawYaml:
+    - ./infra/k8s/*
+build:
+   local:
+     push: false
+ #  googleCloudBuild:
+ #    projectId: pangea-419113
+   artifacts:
+     - image: abhiabrol/auth
+       context: auth
+       docker:
+         dockerfile: Dockerfile
+       sync:
+         manual:
+           - src: "src/**/*.ts"
+             dest: .
+     - image: abhiabrol/orders
+       context: orders
+       docker:
+         dockerfile: Dockerfile
+       sync:
+         manual:
+           - src: "src/**/*.ts"
+             dest: .
+     - image: abhiabrol/expiration
+       context: expiration
+       docker:
+         dockerfile: Dockerfile
+       sync:
+         manual:
+           - src: "src/**/*.ts"
+             dest: .
+     - image: abhiabrol/payments
+       context: payments
+       docker:
+         dockerfile: Dockerfile
+       sync:
+         manual:
+           - src: "src/**/*.ts"
+             dest: .
+     - image: abhiabrol/products
+       context: products
+       docker:
+         dockerfile: Dockerfile
+       sync:
+         manual:
+           - src: "src/**/*.ts"
+             dest: .    
+     - image: abhiabrol/client
+       context: client
+       docker:
+         dockerfile: Dockerfile
+       sync:
+         manual:
+           - src: "src/**/*.js"
+             dest: .
+
+
+# apiVersion: skaffold/v4beta3
+# kind: Config
+# manifests:
+#   rawYaml:
+#     - ./infra/k8s/*
+# build:
+#   googleCloudBuild:
+#     projectId: pangea-419113
+#   artifacts:
+#      - image: gcr.io/pangea-419113/auth
+#        context: auth
+#        docker:
+#          dockerfile: Dockerfile
+#        sync:
+#          manual:
+#            - src: "src/**/*.ts"
+#              dest: .
+#      - image: gcr.io/pangea-419113/orders
+#        context: orders
+#        docker:
+#          dockerfile: Dockerfile
+#        sync:
+#          manual:
+#            - src: "src/**/*.ts"
+#              dest: .
+#      - image: gcr.io/pangea-419113/products
+#        context: products
+#        docker:
+#          dockerfile: Dockerfile
+#        sync:
+#          manual:
+#            - src: "src/**/*.ts"
+#              dest: .
+    #  - image: gcr.io/pangea-419113/expiration
+    #    context: expiration
+    #    docker:
+    #      dockerfile: Dockerfile
+    #    sync:
+    #      manual:
+    #        - src: "src/**/*.ts"
+    #          dest: .
+    #  - image: gcr.io/pangea-419113/payments
+    #    context: payments
+    #    docker:
+    #      dockerfile: Dockerfile
+    #    sync:
+    #      manual:
+    #        - src: "src/**/*.ts"
+    #          dest: .   
+    #  - image: gcr.io/pangea-419113/client
+    #    context: client
+    #    docker:
+    #      dockerfile: Dockerfile
+    #    sync:
+    #      manual:
+    #        - src: "src/**/*.js"
+    #          dest: .
+
+    #  - image: gcr.io/pangea-419113/auth
+    #    context: auth
+    #    docker:
+    #      dockerfile: Dockerfile
+    #    sync:
+    #      manual:
+    #        - src: "src/**/*.ts"
+    #          dest: .
+
+    #  - image: abhiabrol/payments
+    #    context: payments
+    #    docker:
+    #      dockerfile: Dockerfile
+    #    sync:
+    #      manual:
+    #        - src: "src/**/*.ts"
+    #          dest: .    
+    #  - image: abhiabrol/client
+    #    context: client
+    #    docker:
+    #      dockerfile: Dockerfile
+    #    sync:
+    #      manual:
+    #        - src: "src/**/*.js"
+    #          dest: .
+
+# build:
+#    local:
+#      push: false
